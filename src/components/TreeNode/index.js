@@ -45,7 +45,7 @@ class TreeNode extends PureComponent {
 
     renderChildren(decorators) {
         const {
-            animations, decorators: propDecorators, node, style, onToggle, onSelect, customStyles
+            animations, decorators: propDecorators, node, style, onToggle, onSelect, onRightSelect, customStyles
         } = this.props;
 
         if (node.loading) {
@@ -64,6 +64,7 @@ class TreeNode extends PureComponent {
                 {children.map(child => (
                     <TreeNode
                         onSelect={onSelect}
+                        onRightSelect={onRightSelect}
                         onToggle={onToggle}
                         animations={animations}
                         style={style}
@@ -79,7 +80,7 @@ class TreeNode extends PureComponent {
 
     render() {
         const {
-            node, style, onSelect, customStyles
+            node, style, onSelect, onRightSelect, customStyles
         } = this.props;
         const decorators = this.decorators();
         const animations = this.animations();
@@ -94,6 +95,7 @@ class TreeNode extends PureComponent {
                     customStyles={customStyles}
                     onClick={() => this.onClick()}
                     onSelect={isFunction(onSelect) ? (() => onSelect(node)) : undefined}
+                    onRightSelect={isFunction(onRightSelect) ? ((e) => onRightSelect(e, node)) : undefined}
                 />
                 <Drawer restAnimationInfo={{...restAnimationInfo}}>
                     {node.toggled ? this.renderChildren(decorators, animations) : null}
@@ -105,6 +107,7 @@ class TreeNode extends PureComponent {
 
 TreeNode.propTypes = {
     onSelect: PropTypes.func,
+    onRightSelect: PropTypes.func,
     onToggle: PropTypes.func,
     style: PropTypes.object.isRequired,
     customStyles: PropTypes.object,

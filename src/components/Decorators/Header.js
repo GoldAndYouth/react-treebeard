@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import {Div} from '../common';
 
-const Header = ({onSelect, node, style, customStyles}) => (
-    <div style={style.base} onClick={onSelect}>
+const Header = ({onRightSelect, onSelect, node, style, customStyles}) => (
+    <div style={style.base} onClick={onSelect} onContextMenu={onRightSelect}>
         <Div style={node.selected ? {...style.title, ...customStyles.header.title} : style.title}>
             {node.name}
         </Div>
@@ -13,6 +13,7 @@ const Header = ({onSelect, node, style, customStyles}) => (
 
 Header.propTypes = {
     onSelect: PropTypes.func,
+    onRightSelect: PropTypes.func,
     style: PropTypes.object,
     customStyles: PropTypes.object,
     node: PropTypes.object.isRequired

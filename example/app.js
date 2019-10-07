@@ -16,6 +16,7 @@ class DemoTree extends PureComponent {
         this.state = {data};
         this.onToggle = this.onToggle.bind(this);
         this.onSelect = this.onSelect.bind(this);
+        this.onRightSelect = this.onRightSelect.bind(this);
     }
 
     onToggle(node, toggled) {
@@ -47,6 +48,12 @@ class DemoTree extends PureComponent {
         node.selected = true;
 
         this.setState(() => ({cursor: node, data: Object.assign({}, data)}));
+    }
+
+    onRightSelect(e, node) {
+        console.log('Right Click Event.');
+        console.log(node);
+        e.preventDefault();
     }
 
     onFilterMouseUp({target: {value}}) {
@@ -81,6 +88,7 @@ class DemoTree extends PureComponent {
                         data={data}
                         onToggle={this.onToggle}
                         onSelect={this.onSelect}
+                        onRightSelect={this.onRightSelect}
                         decorators={{...decorators, Header}}
                         customStyles={{
                             header: {

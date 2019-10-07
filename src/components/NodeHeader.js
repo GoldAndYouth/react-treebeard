@@ -25,7 +25,7 @@ class NodeHeader extends Component {
 
     render() {
         const {
-            animations, decorators, node, onClick, style, onSelect, customStyles
+            animations, decorators, node, onClick, style, onSelect, onRightSelect, customStyles
         } = this.props;
         const {active, children} = node;
         const terminal = !children;
@@ -43,6 +43,7 @@ class NodeHeader extends Component {
                 onClick={onClick}
                 customStyles={customStyles}
                 onSelect={onSelect}
+                onRightSelect={onRightSelect}
                 terminal={terminal}
                 style={styles}
             />
@@ -60,7 +61,8 @@ NodeHeader.propTypes = {
     ]).isRequired,
     node: PropTypes.object.isRequired,
     onClick: PropTypes.func,
-    onSelect: PropTypes.func
+    onSelect: PropTypes.func,
+    onRightSelect: PropTypes.func,
 };
 
 NodeHeader.defaultProps = {
