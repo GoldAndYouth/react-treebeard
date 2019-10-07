@@ -188,8 +188,8 @@ function (_PureComponent) {
         onSelect: (0, _lodash.isFunction)(onSelect) ? function () {
           return onSelect(node);
         } : undefined,
-        onRightSelect: (0, _lodash.isFunction)(onRightSelect) ? function () {
-          return onRightSelect(node);
+        onRightSelect: (0, _lodash.isFunction)(onRightSelect) ? function (e) {
+          return onRightSelect(e, node);
         } : undefined
       }), _react["default"].createElement(_Drawer["default"], {
         restAnimationInfo: _objectSpread({}, restAnimationInfo)
