@@ -86,7 +86,6 @@ class TreeNode extends PureComponent {
         } = this.props;
         const decorators = this.decorators();
         const animations = this.animations();
-        console.log(onDrag);
         const {...restAnimationInfo} = animations.drawer;
         return (
             <Li style={style.base}>

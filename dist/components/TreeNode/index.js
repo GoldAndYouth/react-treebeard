@@ -176,7 +176,6 @@ function (_PureComponent) {
           customStyles = _this$props5.customStyles;
       var decorators = this.decorators();
       var animations = this.animations();
-      console.log(onDrag);
 
       var restAnimationInfo = _extends({}, animations.drawer);
 
