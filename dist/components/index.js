@@ -36,6 +36,7 @@ var TreeBeard = function TreeBeard(_ref) {
       decorators = _ref.decorators,
       data = _ref.data,
       onToggle = _ref.onToggle,
+      onDrag = _ref.onDrag,
       style = _ref.style,
       onSelect = _ref.onSelect,
       onRightSelect = _ref.onRightSelect,
@@ -47,6 +48,7 @@ var TreeBeard = function TreeBeard(_ref) {
       decorators: decorators,
       node: node,
       onToggle: onToggle,
+      onDrag: onDrag,
       animations: animations,
       onSelect: onSelect,
       onRightSelect: onRightSelect,
@@ -63,6 +65,7 @@ TreeBeard.propTypes = {
   data: _propTypes["default"].oneOfType([_propTypes["default"].object, _propTypes["default"].array]).isRequired,
   animations: _propTypes["default"].oneOfType([_propTypes["default"].object, _propTypes["default"].bool]),
   onToggle: _propTypes["default"].func,
+  onDrag: _propTypes["default"].func,
   onSelect: _propTypes["default"].func,
   onRightSelect: _propTypes["default"].func,
   decorators: _propTypes["default"].object

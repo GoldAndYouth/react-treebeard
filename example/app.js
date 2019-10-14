@@ -56,6 +56,11 @@ class DemoTree extends PureComponent {
         e.preventDefault();
     }
 
+    onDrag(e, node) {
+        console.log('Drag Event.');
+        console.log(node);
+    }
+
     onFilterMouseUp({target: {value}}) {
         const filter = value.trim();
         if (!filter) {
@@ -89,6 +94,7 @@ class DemoTree extends PureComponent {
                         onToggle={this.onToggle}
                         onSelect={this.onSelect}
                         onRightSelect={this.onRightSelect}
+                        onDrag={this.onDrag}
                         decorators={{...decorators, Header}}
                         customStyles={{
                             header: {

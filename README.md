@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/storybookjs/react-treebeard.svg?branch=master)](https://travis-ci.org/storybookjs/react-treebeard) [![Coverage Status](https://coveralls.io/repos/storybookjs/react-treebeard/badge.svg?branch=master&service=github)](https://coveralls.io/github/storybookjs/react-treebeard?branch=master)
 
 React Tree View Component. Data-Driven, Fast, Efficient and Customisable.
+Modified to add right-click event and drag and drop
 
 ### Install
 

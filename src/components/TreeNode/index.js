@@ -7,6 +7,7 @@ import defaultAnimations from '../../themes/animations';
 import {randomString} from '../../util';
 import {Ul} from '../common';
 import NodeHeader from '../NodeHeader';
+import {Draggable} from 'dragginit';
 import Drawer from './Drawer';
 import Loading from './Loading';
 
@@ -45,7 +46,7 @@ class TreeNode extends PureComponent {
 
     renderChildren(decorators) {
         const {
-            animations, decorators: propDecorators, node, style, onToggle, onSelect, onRightSelect, customStyles
+            animations, decorators: propDecorators, node, style, onToggle, onSelect, onDrag, onRightSelect, customStyles
         } = this.props;
 
         if (node.loading) {
@@ -66,6 +67,7 @@ class TreeNode extends PureComponent {
                         onSelect={onSelect}
                         onRightSelect={onRightSelect}
                         onToggle={onToggle}
+                        onDrag={onDrag}
                         animations={animations}
                         style={style}
                         customStyles={customStyles}
@@ -80,23 +82,26 @@ class TreeNode extends PureComponent {
 
     render() {
         const {
-            node, style, onSelect, onRightSelect, customStyles
+            node, style, onSelect, onRightSelect, onDrag, customStyles
         } = this.props;
         const decorators = this.decorators();
         const animations = this.animations();
+        console.log(onDrag);
         const {...restAnimationInfo} = animations.drawer;
         return (
             <Li style={style.base}>
-                <NodeHeader
-                    decorators={decorators}
-                    animations={animations}
-                    node={node}
-                    style={style}
-                    customStyles={customStyles}
-                    onClick={() => this.onClick()}
-                    onSelect={isFunction(onSelect) ? (() => onSelect(node)) : undefined}
-                    onRightSelect={isFunction(onRightSelect) ? ((e) => onRightSelect(e, node)) : undefined}
-                />
+                <Draggable onDrag={isFunction(onDrag) ? ((e) => onDrag(e, node)) : undefined}>
+                    <NodeHeader
+                        decorators={decorators}
+                        animations={animations}
+                        node={node}
+                        style={style}
+                        customStyles={customStyles}
+                        onClick={() => this.onClick()}
+                        onSelect={isFunction(onSelect) ? (() => onSelect(node)) : undefined}
+                        onRightSelect={isFunction(onRightSelect) ? ((e) => onRightSelect(e, node)) : undefined}
+                    />
+                </Draggable>
                 <Drawer restAnimationInfo={{...restAnimationInfo}}>
                     {node.toggled ? this.renderChildren(decorators, animations) : null}
                 </Drawer>
@@ -108,6 +113,7 @@ class TreeNode extends PureComponent {
 TreeNode.propTypes = {
     onSelect: PropTypes.func,
     onRightSelect: PropTypes.func,
+    onDrag: PropTypes.func,
     onToggle: PropTypes.func,
     style: PropTypes.object.isRequired,
     customStyles: PropTypes.object,

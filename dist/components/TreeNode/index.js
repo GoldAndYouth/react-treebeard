@@ -21,6 +21,8 @@ var _common = require("../common");
 
 var _NodeHeader = _interopRequireDefault(require("../NodeHeader"));
 
+var _dragginit = require("dragginit");
+
 var _Drawer = _interopRequireDefault(require("./Drawer"));
 
 var _Loading = _interopRequireDefault(require("./Loading"));
@@ -126,6 +128,7 @@ function (_PureComponent) {
           style = _this$props4.style,
           onToggle = _this$props4.onToggle,
           onSelect = _this$props4.onSelect,
+          onDrag = _this$props4.onDrag,
           onRightSelect = _this$props4.onRightSelect,
           customStyles = _this$props4.customStyles;
 
@@ -149,6 +152,7 @@ function (_PureComponent) {
           onSelect: onSelect,
           onRightSelect: onRightSelect,
           onToggle: onToggle,
+          onDrag: onDrag,
           animations: animations,
           style: style,
           customStyles: customStyles,
@@ -168,14 +172,20 @@ function (_PureComponent) {
           style = _this$props5.style,
           onSelect = _this$props5.onSelect,
           onRightSelect = _this$props5.onRightSelect,
+          onDrag = _this$props5.onDrag,
           customStyles = _this$props5.customStyles;
       var decorators = this.decorators();
       var animations = this.animations();
+      console.log(onDrag);
 
       var restAnimationInfo = _extends({}, animations.drawer);
 
       return _react["default"].createElement(Li, {
         style: style.base
+      }, _react["default"].createElement(_dragginit.Draggable, {
+        onDrag: (0, _lodash.isFunction)(onDrag) ? function (e) {
+          return onDrag(e, node);
+        } : undefined
       }, _react["default"].createElement(_NodeHeader["default"], {
         decorators: decorators,
         animations: animations,
@@ -191,7 +201,7 @@ function (_PureComponent) {
         onRightSelect: (0, _lodash.isFunction)(onRightSelect) ? function (e) {
           return onRightSelect(e, node);
         } : undefined
-      }), _react["default"].createElement(_Drawer["default"], {
+      })), _react["default"].createElement(_Drawer["default"], {
         restAnimationInfo: _objectSpread({}, restAnimationInfo)
       }, node.toggled ? this.renderChildren(decorators, animations) : null));
     }
@@ -203,6 +213,7 @@ function (_PureComponent) {
 TreeNode.propTypes = {
   onSelect: _propTypes["default"].func,
   onRightSelect: _propTypes["default"].func,
+  onDrag: _propTypes["default"].func,
   onToggle: _propTypes["default"].func,
   style: _propTypes["default"].object.isRequired,
   customStyles: _propTypes["default"].object,
