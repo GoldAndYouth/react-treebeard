@@ -97,7 +97,7 @@ class TreeNode extends PureComponent {
                         style={style}
                         customStyles={customStyles}
                         onClick={() => this.onClick()}
-                        onSelect={isFunction(onSelect) ? (() => onSelect(node)) : undefined}
+                        onSelect={isFunction(onSelect) ? ((e) => onSelect(e, node)) : undefined}
                         onRightSelect={isFunction(onRightSelect) ? ((e) => onRightSelect(e, node)) : undefined}
                     />
                 </Draggable>

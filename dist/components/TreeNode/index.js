@@ -194,8 +194,8 @@ function (_PureComponent) {
         onClick: function onClick() {
           return _this.onClick();
         },
-        onSelect: (0, _lodash.isFunction)(onSelect) ? function () {
-          return onSelect(node);
+        onSelect: (0, _lodash.isFunction)(onSelect) ? function (e) {
+          return onSelect(e, node);
         } : undefined,
         onRightSelect: (0, _lodash.isFunction)(onRightSelect) ? function (e) {
           return onRightSelect(e, node);

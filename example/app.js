@@ -34,7 +34,7 @@ class DemoTree extends PureComponent {
         this.setState(() => ({cursor: node, data: Object.assign({}, data)}));
     }
 
-    onSelect(node) {
+    onSelecte(e, node) {
         const {cursor, data} = this.state;
 
         if (cursor) {
