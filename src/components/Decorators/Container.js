@@ -17,6 +17,14 @@ class Container extends PureComponent {
         );
     }
 
+    renderSdk() {
+        const {style, decorators, onSdkIconClick } = this.props;
+
+        return (
+            <decorators.Sdk style={style.sdkIcon} onClick={onSdkIconClick}/>
+        );
+    }
+
     renderToggleDecorator() {
         const {style, decorators, onClick} = this.props;
         return <decorators.Toggle style={style.toggle} onClick={onClick}/>;
@@ -24,7 +32,7 @@ class Container extends PureComponent {
 
     render() {
         const {
-            style, decorators, terminal, node, onSelect, onRightSelect, customStyles
+            style, decorators, terminal, sdk, node, onSelect, onRightSelect, customStyles
         } = this.props;
         return (
             <div style={node.active ? {...style.container} : {...style.link}}>
@@ -36,6 +44,7 @@ class Container extends PureComponent {
                     onSelect={onSelect}
                     onRightSelect={onRightSelect}
                 />
+                {sdk ? this.renderSdk() : null}
             </div>
         );
     }
@@ -46,9 +55,11 @@ Container.propTypes = {
     style: PropTypes.object.isRequired,
     decorators: PropTypes.object.isRequired,
     terminal: PropTypes.bool.isRequired,
+    sdk: PropTypes.bool.isRequired,
     onClick: PropTypes.func.isRequired,
     onSelect: PropTypes.func,
     onRightSelect: PropTypes.func,
+    onSdkIconClick: PropTypes.func,
     animations: PropTypes.oneOfType([
         PropTypes.object,
         PropTypes.bool

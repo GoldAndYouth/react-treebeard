@@ -25,10 +25,11 @@ class NodeHeader extends Component {
 
     render() {
         const {
-            animations, decorators, node, onClick, style, onSelect, onRightSelect, customStyles
+            animations, decorators, node, onClick, style, onSelect, onRightSelect, customStyles, onSdkIconClick
         } = this.props;
-        const {active, children} = node;
+        const {active, children, sdk} = node;
         const terminal = !children;
+        const sdkActive = sdk === undefined ? false : true; 
         let styles;
         if (active) {
             styles = Object.assign(style, {container: {...style.link, ...style.activeLink}});
@@ -41,10 +42,12 @@ class NodeHeader extends Component {
                 decorators={decorators}
                 node={node}
                 onClick={onClick}
+                onSdkIconClick={onSdkIconClick}
                 customStyles={customStyles}
                 onSelect={onSelect}
                 onRightSelect={onRightSelect}
                 terminal={terminal}
+                sdk={sdkActive}
                 style={styles}
             />
         );
@@ -61,6 +64,7 @@ NodeHeader.propTypes = {
     ]).isRequired,
     node: PropTypes.object.isRequired,
     onClick: PropTypes.func,
+    onSdkIconClick: PropTypes.func,
     onSelect: PropTypes.func,
     onRightSelect: PropTypes.func,
 };

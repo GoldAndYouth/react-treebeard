@@ -46,7 +46,16 @@ class TreeNode extends PureComponent {
 
     renderChildren(decorators) {
         const {
-            animations, decorators: propDecorators, node, style, onToggle, onSelect, onDrag, onRightSelect, customStyles
+            animations,
+            decorators: propDecorators,
+            node,
+            style,
+            onToggle,
+            onSelect,
+            onDrag,
+            onRightSelect,
+            customStyles,
+            onSdkIconClick,
         } = this.props;
 
         if (node.loading) {
@@ -66,6 +75,7 @@ class TreeNode extends PureComponent {
                     <TreeNode
                         onSelect={onSelect}
                         onRightSelect={onRightSelect}
+                        onSdkIconClick={onSdkIconClick}
                         onToggle={onToggle}
                         onDrag={onDrag}
                         animations={animations}
@@ -82,7 +92,7 @@ class TreeNode extends PureComponent {
 
     render() {
         const {
-            node, style, onSelect, onRightSelect, onDrag, customStyles
+            node, style, onSelect, onRightSelect, onDrag, customStyles, onSdkIconClick
         } = this.props;
         const decorators = this.decorators();
         const animations = this.animations();
@@ -99,6 +109,7 @@ class TreeNode extends PureComponent {
                         onClick={() => this.onClick()}
                         onSelect={isFunction(onSelect) ? ((e) => onSelect(e, node)) : undefined}
                         onRightSelect={isFunction(onRightSelect) ? ((e) => onRightSelect(e, node)) : undefined}
+                        onSdkIconClick={isFunction(onSdkIconClick) ? ((e) => onSdkIconClick(e)) : undefined}
                     />
                 </Draggable>
                 <Drawer restAnimationInfo={{...restAnimationInfo}}>
@@ -112,6 +123,7 @@ class TreeNode extends PureComponent {
 TreeNode.propTypes = {
     onSelect: PropTypes.func,
     onRightSelect: PropTypes.func,
+    onSdkIconClick: PropTypes.func,
     onDrag: PropTypes.func,
     onToggle: PropTypes.func,
     style: PropTypes.object.isRequired,

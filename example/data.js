@@ -5,6 +5,7 @@ export default {
     children: [
         {
             name: 'example',
+            sdk: [],
             children: [
                 { name: 'app.js' },
                 { name: 'data.js' },
@@ -23,6 +24,7 @@ export default {
             children: [
                 {
                     name: 'components',
+                    sdk: [],
                     children: [
                         { name: 'decorators.js' },
                         { name: 'treebeard.js' }
@@ -39,7 +41,9 @@ export default {
             ]
         },
         { name: 'gulpfile.js' },
-        { name: 'index.js' },
+        { name: 'index.js',
+            sdk: []
+        },
         { name: 'package.json' }
     ]
 };

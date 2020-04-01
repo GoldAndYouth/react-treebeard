@@ -10,7 +10,7 @@ import defaultDecorators from './Decorators';
 import TreeNode from './TreeNode';
 
 const TreeBeard = ({
-    animations, decorators, data, onToggle, onDrag, style, onSelect, onRightSelect, customStyles
+    animations, decorators, data, onToggle, onDrag, style, onSelect, onRightSelect, customStyles, onSdkIconClick
 }) => (
     <Ul style={{...defaultTheme.tree.base, ...style.tree.base}}>
         {castArray(data).map(node => (
@@ -22,6 +22,7 @@ const TreeBeard = ({
                 animations={animations}
                 onSelect={onSelect}
                 onRightSelect={onRightSelect}
+                onSdkIconClick={onSdkIconClick}
                 customStyles={customStyles}
                 key={node.id || randomString()}
                 style={{...defaultTheme.tree.node, ...style.tree.node}}
@@ -45,6 +46,7 @@ TreeBeard.propTypes = {
     onDrag: PropTypes.func,
     onSelect: PropTypes.func,
     onRightSelect: PropTypes.func,
+    onSdkIconClick: PropTypes.func,
     decorators: PropTypes.object
 };
 

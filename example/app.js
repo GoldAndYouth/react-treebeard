@@ -17,6 +17,7 @@ class DemoTree extends PureComponent {
         this.onToggle = this.onToggle.bind(this);
         this.onSelect = this.onSelect.bind(this);
         this.onRightSelect = this.onRightSelect.bind(this);
+        this.onSdkIconClick = this.onSdkIconClick.bind(this);
     }
 
     onToggle(node, toggled) {
@@ -34,7 +35,7 @@ class DemoTree extends PureComponent {
         this.setState(() => ({cursor: node, data: Object.assign({}, data)}));
     }
 
-    onSelecte(e, node) {
+    onSelect(e, node) {
         const {cursor, data} = this.state;
 
         if (cursor) {
@@ -53,6 +54,11 @@ class DemoTree extends PureComponent {
     onRightSelect(e, node) {
         console.log('Right Click Event.');
         console.log(node);
+        e.preventDefault();
+    }
+
+    onSdkIconClick(e) {
+        console.log('Icon Clicked.');
         e.preventDefault();
     }
 
@@ -95,6 +101,7 @@ class DemoTree extends PureComponent {
                         onSelect={this.onSelect}
                         onRightSelect={this.onRightSelect}
                         onDrag={this.onDrag}
+                        onSdkIconClick={this.onSdkIconClick}
                         decorators={{...decorators, Header}}
                         customStyles={{
                             header: {
