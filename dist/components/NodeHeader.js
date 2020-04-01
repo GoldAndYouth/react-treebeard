@@ -89,10 +89,13 @@ function (_Component) {
           style = _this$props.style,
           onSelect = _this$props.onSelect,
           onRightSelect = _this$props.onRightSelect,
-          customStyles = _this$props.customStyles;
+          customStyles = _this$props.customStyles,
+          onSdkIconClick = _this$props.onSdkIconClick;
       var active = node.active,
-          children = node.children;
+          children = node.children,
+          sdk = node.sdk;
       var terminal = !children;
+      var sdkActive = sdk === undefined ? false : true;
       var styles;
 
       if (active) {
@@ -108,10 +111,12 @@ function (_Component) {
         decorators: decorators,
         node: node,
         onClick: onClick,
+        onSdkIconClick: onSdkIconClick,
         customStyles: customStyles,
         onSelect: onSelect,
         onRightSelect: onRightSelect,
         terminal: terminal,
+        sdk: sdkActive,
         style: styles
       });
     }
@@ -127,6 +132,7 @@ NodeHeader.propTypes = {
   animations: _propTypes["default"].oneOfType([_propTypes["default"].object, _propTypes["default"].bool]).isRequired,
   node: _propTypes["default"].object.isRequired,
   onClick: _propTypes["default"].func,
+  onSdkIconClick: _propTypes["default"].func,
   onSelect: _propTypes["default"].func,
   onRightSelect: _propTypes["default"].func
 };

@@ -13,12 +13,15 @@ var _Loading = _interopRequireDefault(require("./Loading"));
 
 var _Toggle = _interopRequireDefault(require("./Toggle"));
 
+var _Sdk = _interopRequireDefault(require("./Sdk"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var _default = {
   Container: _Container["default"],
   Header: _Header["default"],
   Loading: _Loading["default"],
-  Toggle: _Toggle["default"]
+  Toggle: _Toggle["default"],
+  Sdk: _Sdk["default"]
 };
 exports["default"] = _default;

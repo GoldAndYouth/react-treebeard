@@ -51,6 +51,25 @@ var _default = {
           strokeWidth: 0
         }
       },
+      sdkIcon: {
+        base: {
+          position: 'relative',
+          display: 'inline-block',
+          verticalAlign: 'top',
+          marginLeft: '5px',
+          height: '24px',
+          width: '24px'
+        },
+        wrapper: {
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          margin: '-7px 0 0 -7px',
+          height: '14px'
+        },
+        height: 14,
+        width: 14
+      },
       header: {
         base: {
           display: 'inline-block',

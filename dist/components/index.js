@@ -40,7 +40,8 @@ var TreeBeard = function TreeBeard(_ref) {
       style = _ref.style,
       onSelect = _ref.onSelect,
       onRightSelect = _ref.onRightSelect,
-      customStyles = _ref.customStyles;
+      customStyles = _ref.customStyles,
+      onSdkIconClick = _ref.onSdkIconClick;
   return _react["default"].createElement(_common.Ul, {
     style: _objectSpread({}, _default2["default"].tree.base, {}, style.tree.base)
   }, (0, _lodash.castArray)(data).map(function (node) {
@@ -52,6 +53,7 @@ var TreeBeard = function TreeBeard(_ref) {
       animations: animations,
       onSelect: onSelect,
       onRightSelect: onRightSelect,
+      onSdkIconClick: onSdkIconClick,
       customStyles: customStyles,
       key: node.id || (0, _util.randomString)(),
       style: _objectSpread({}, _default2["default"].tree.node, {}, style.tree.node)
@@ -68,6 +70,7 @@ TreeBeard.propTypes = {
   onDrag: _propTypes["default"].func,
   onSelect: _propTypes["default"].func,
   onRightSelect: _propTypes["default"].func,
+  onSdkIconClick: _propTypes["default"].func,
   decorators: _propTypes["default"].object
 };
 TreeBeard.defaultProps = {

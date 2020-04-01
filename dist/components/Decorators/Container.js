@@ -67,12 +67,24 @@ function (_PureComponent) {
       }, this.renderToggleDecorator());
     }
   }, {
-    key: "renderToggleDecorator",
-    value: function renderToggleDecorator() {
+    key: "renderSdk",
+    value: function renderSdk() {
       var _this$props = this.props,
           style = _this$props.style,
           decorators = _this$props.decorators,
-          onClick = _this$props.onClick;
+          onSdkIconClick = _this$props.onSdkIconClick;
+      return _react["default"].createElement(decorators.Sdk, {
+        style: style.sdkIcon,
+        onClick: onSdkIconClick
+      });
+    }
+  }, {
+    key: "renderToggleDecorator",
+    value: function renderToggleDecorator() {
+      var _this$props2 = this.props,
+          style = _this$props2.style,
+          decorators = _this$props2.decorators,
+          onClick = _this$props2.onClick;
       return _react["default"].createElement(decorators.Toggle, {
         style: style.toggle,
         onClick: onClick
@@ -81,14 +93,15 @@ function (_PureComponent) {
   }, {
     key: "render",
     value: function render() {
-      var _this$props2 = this.props,
-          style = _this$props2.style,
-          decorators = _this$props2.decorators,
-          terminal = _this$props2.terminal,
-          node = _this$props2.node,
-          onSelect = _this$props2.onSelect,
-          onRightSelect = _this$props2.onRightSelect,
-          customStyles = _this$props2.customStyles;
+      var _this$props3 = this.props,
+          style = _this$props3.style,
+          decorators = _this$props3.decorators,
+          terminal = _this$props3.terminal,
+          sdk = _this$props3.sdk,
+          node = _this$props3.node,
+          onSelect = _this$props3.onSelect,
+          onRightSelect = _this$props3.onRightSelect,
+          customStyles = _this$props3.customStyles;
       return _react["default"].createElement("div", {
         style: node.active ? _objectSpread({}, style.container) : _objectSpread({}, style.link)
       }, !terminal ? this.renderToggle() : null, _react["default"].createElement(decorators.Header, {
@@ -97,7 +110,7 @@ function (_PureComponent) {
         customStyles: customStyles,
         onSelect: onSelect,
         onRightSelect: onRightSelect
-      }));
+      }), sdk ? this.renderSdk() : null);
     }
   }]);
 
@@ -109,9 +122,11 @@ Container.propTypes = {
   style: _propTypes["default"].object.isRequired,
   decorators: _propTypes["default"].object.isRequired,
   terminal: _propTypes["default"].bool.isRequired,
+  sdk: _propTypes["default"].bool.isRequired,
   onClick: _propTypes["default"].func.isRequired,
   onSelect: _propTypes["default"].func,
   onRightSelect: _propTypes["default"].func,
+  onSdkIconClick: _propTypes["default"].func,
   animations: _propTypes["default"].oneOfType([_propTypes["default"].object, _propTypes["default"].bool]).isRequired,
   node: _propTypes["default"].object.isRequired
 };

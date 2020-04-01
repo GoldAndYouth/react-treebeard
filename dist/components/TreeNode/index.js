@@ -130,7 +130,8 @@ function (_PureComponent) {
           onSelect = _this$props4.onSelect,
           onDrag = _this$props4.onDrag,
           onRightSelect = _this$props4.onRightSelect,
-          customStyles = _this$props4.customStyles;
+          customStyles = _this$props4.customStyles,
+          onSdkIconClick = _this$props4.onSdkIconClick;
 
       if (node.loading) {
         return _react["default"].createElement(_Loading["default"], {
@@ -151,6 +152,7 @@ function (_PureComponent) {
         return _react["default"].createElement(TreeNode, {
           onSelect: onSelect,
           onRightSelect: onRightSelect,
+          onSdkIconClick: onSdkIconClick,
           onToggle: onToggle,
           onDrag: onDrag,
           animations: animations,
@@ -173,7 +175,8 @@ function (_PureComponent) {
           onSelect = _this$props5.onSelect,
           onRightSelect = _this$props5.onRightSelect,
           onDrag = _this$props5.onDrag,
-          customStyles = _this$props5.customStyles;
+          customStyles = _this$props5.customStyles,
+          onSdkIconClick = _this$props5.onSdkIconClick;
       var decorators = this.decorators();
       var animations = this.animations();
 
@@ -199,6 +202,9 @@ function (_PureComponent) {
         } : undefined,
         onRightSelect: (0, _lodash.isFunction)(onRightSelect) ? function (e) {
           return onRightSelect(e, node);
+        } : undefined,
+        onSdkIconClick: (0, _lodash.isFunction)(onSdkIconClick) ? function (e) {
+          return onSdkIconClick(e);
         } : undefined
       })), _react["default"].createElement(_Drawer["default"], {
         restAnimationInfo: _objectSpread({}, restAnimationInfo)
@@ -212,6 +218,7 @@ function (_PureComponent) {
 TreeNode.propTypes = {
   onSelect: _propTypes["default"].func,
   onRightSelect: _propTypes["default"].func,
+  onSdkIconClick: _propTypes["default"].func,
   onDrag: _propTypes["default"].func,
   onToggle: _propTypes["default"].func,
   style: _propTypes["default"].object.isRequired,
