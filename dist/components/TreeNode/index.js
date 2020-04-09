@@ -185,6 +185,7 @@ function (_PureComponent) {
       return _react["default"].createElement(Li, {
         style: style.base
       }, _react["default"].createElement(_dragginit.Draggable, {
+        useDragImage: false,
         onDrag: (0, _lodash.isFunction)(onDrag) ? function (e) {
           return onDrag(e, node);
         } : undefined
