@@ -99,7 +99,7 @@ class TreeNode extends PureComponent {
         const {...restAnimationInfo} = animations.drawer;
         return (
             <Li style={style.base}>
-                <Draggable useDragImage={false} onDrag={isFunction(onDrag) ? ((e) => onDrag(e, node)) : undefined}>
+                <Draggable useDragImage onDrag={isFunction(onDrag) ? ((e) => onDrag(e, node)) : undefined}>
                     <NodeHeader
                         decorators={decorators}
                         animations={animations}
