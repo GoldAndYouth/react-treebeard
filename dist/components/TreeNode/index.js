@@ -205,7 +205,7 @@ function (_PureComponent) {
           return onRightSelect(e, node);
         } : undefined,
         onSdkIconClick: (0, _lodash.isFunction)(onSdkIconClick) ? function (e) {
-          return onSdkIconClick(e);
+          return onSdkIconClick(e, node);
         } : undefined
       })), _react["default"].createElement(_Drawer["default"], {
         restAnimationInfo: _objectSpread({}, restAnimationInfo)

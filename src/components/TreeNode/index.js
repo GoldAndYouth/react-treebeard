@@ -109,7 +109,7 @@ class TreeNode extends PureComponent {
                         onClick={() => this.onClick()}
                         onSelect={isFunction(onSelect) ? ((e) => onSelect(e, node)) : undefined}
                         onRightSelect={isFunction(onRightSelect) ? ((e) => onRightSelect(e, node)) : undefined}
-                        onSdkIconClick={isFunction(onSdkIconClick) ? ((e) => onSdkIconClick(e)) : undefined}
+                        onSdkIconClick={isFunction(onSdkIconClick) ? ((e) => onSdkIconClick(e, node)) : undefined}
                     />
                 </Draggable>
                 <Drawer restAnimationInfo={{...restAnimationInfo}}>

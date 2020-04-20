@@ -57,8 +57,9 @@ class DemoTree extends PureComponent {
         e.preventDefault();
     }
 
-    onSdkIconClick(e) {
+    onSdkIconClick(e, node) {
         console.log('Icon Clicked.');
+        console.log(node);
         e.preventDefault();
     }
 
