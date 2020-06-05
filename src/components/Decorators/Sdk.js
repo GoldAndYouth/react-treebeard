@@ -23,7 +23,7 @@ const Sdk = ({style, onClick}) => {
                     width={width}
                     height={height}
                     style={style}
-                    viewBox={'0 0 70 70'}
+                    viewBox={'0 0 35 35'}
                 >
                     <path
                         fill={'white'}

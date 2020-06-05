@@ -31,7 +31,7 @@ var Sdk = function Sdk(_ref) {
     width: width,
     height: height,
     style: style,
-    viewBox: '0 0 70 70'
+    viewBox: '0 0 35 35'
   }, _react["default"].createElement("path", {
     fill: 'white',
     d: icons['first']
