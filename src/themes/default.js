@@ -61,8 +61,8 @@ export default {
                     margin: '-7px 0 0 -7px',
                     height: '14px'
                 },
-                height: 14,
-                width: 14,
+                height: 33,
+                width: 32,
             },
             header: {
                 base: {
