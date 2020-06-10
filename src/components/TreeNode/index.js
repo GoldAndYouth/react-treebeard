@@ -116,7 +116,7 @@ class TreeNode extends PureComponent {
         let styles;
         if (this.state.hovered) {
             styles = {...style, ...style.link};
-            styles.link = {...style.hoveredLink};
+            styles.link = {...style.link, ...style.hoveredLink};
         } else { styles = {...style}; }
         return (
             <Li style={{...style.base}}>
