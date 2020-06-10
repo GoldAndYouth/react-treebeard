@@ -203,13 +203,14 @@ function (_PureComponent) {
       var styles;
 
       if (this.state.hovered) {
-        styles = _objectSpread({}, style.hoveredLink);
+        styles = _objectSpread({}, style, {}, style.link);
+        styles.link = _objectSpread({}, style.hoveredLink);
       } else {
-        styles = _objectSpread({}, style.base);
+        styles = _objectSpread({}, style);
       }
 
       return _react["default"].createElement(Li, {
-        style: styles
+        style: _objectSpread({}, style.base)
       }, _react["default"].createElement(_dragginit.Draggable, {
         useDragImage: true,
         onDrag: (0, _lodash.isFunction)(onDrag) ? function (e) {
@@ -219,7 +220,7 @@ function (_PureComponent) {
         decorators: decorators,
         animations: animations,
         node: node,
-        style: style,
+        style: styles,
         customStyles: customStyles,
         onClick: function onClick() {
           return _this2.onClick();

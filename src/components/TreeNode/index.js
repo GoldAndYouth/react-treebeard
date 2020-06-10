@@ -115,16 +115,17 @@ class TreeNode extends PureComponent {
         const {...restAnimationInfo} = animations.drawer;
         let styles;
         if (this.state.hovered) {
-            styles = {...style.hoveredLink};
-        } else { styles = {...style.base}; }
+            styles = {...style, ...style.link};
+            styles.link = {...style.hoveredLink};
+        } else { styles = {...style}; }
         return (
-            <Li style={styles}>
+            <Li style={{...style.base}}>
                 <Draggable useDragImage onDrag={isFunction(onDrag) ? ((e) => onDrag(e, node)) : undefined}>
                     <NodeHeader
                         decorators={decorators}
                         animations={animations}
                         node={node}
-                        style={style}
+                        style={styles}
                         customStyles={customStyles}
                         onClick={() => this.onClick()}
                         onSelect={isFunction(onSelect) ? ((e) => onSelect(e, node)) : undefined}
