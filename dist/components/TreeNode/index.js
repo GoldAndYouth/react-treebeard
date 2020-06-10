@@ -51,9 +51,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -73,13 +73,27 @@ var TreeNode =
 function (_PureComponent) {
   _inherits(TreeNode, _PureComponent);
 
-  function TreeNode() {
+  function TreeNode(props) {
+    var _this;
+
     _classCallCheck(this, TreeNode);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(TreeNode).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(TreeNode).call(this, props));
+    _this.state = {
+      hovered: false
+    };
+    _this.onHover = _this.onHover.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(TreeNode, [{
+    key: "onHover",
+    value: function onHover(state) {
+      this.setState({
+        hovered: state
+      });
+    }
+  }, {
     key: "onClick",
     value: function onClick() {
       var _this$props = this.props,
@@ -129,6 +143,8 @@ function (_PureComponent) {
           onToggle = _this$props4.onToggle,
           onSelect = _this$props4.onSelect,
           onDrag = _this$props4.onDrag,
+          onHoverOver = _this$props4.onHoverOver,
+          onHoverLeave = _this$props4.onHoverLeave,
           onRightSelect = _this$props4.onRightSelect,
           customStyles = _this$props4.customStyles,
           onSdkIconClick = _this$props4.onSdkIconClick;
@@ -155,6 +171,8 @@ function (_PureComponent) {
           onSdkIconClick: onSdkIconClick,
           onToggle: onToggle,
           onDrag: onDrag,
+          onHoverOver: onHoverOver,
+          onHoverLeave: onHoverLeave,
           animations: animations,
           style: style,
           customStyles: customStyles,
@@ -167,7 +185,7 @@ function (_PureComponent) {
   }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this2 = this;
 
       var _this$props5 = this.props,
           node = _this$props5.node,
@@ -182,8 +200,16 @@ function (_PureComponent) {
 
       var restAnimationInfo = _extends({}, animations.drawer);
 
+      var styles;
+
+      if (this.state.hovered) {
+        styles = _objectSpread({}, style.hoveredLink);
+      } else {
+        styles = _objectSpread({}, style.base);
+      }
+
       return _react["default"].createElement(Li, {
-        style: style.base
+        style: styles
       }, _react["default"].createElement(_dragginit.Draggable, {
         useDragImage: true,
         onDrag: (0, _lodash.isFunction)(onDrag) ? function (e) {
@@ -196,7 +222,7 @@ function (_PureComponent) {
         style: style,
         customStyles: customStyles,
         onClick: function onClick() {
-          return _this.onClick();
+          return _this2.onClick();
         },
         onSelect: (0, _lodash.isFunction)(onSelect) ? function (e) {
           return onSelect(e, node);
@@ -206,7 +232,13 @@ function (_PureComponent) {
         } : undefined,
         onSdkIconClick: (0, _lodash.isFunction)(onSdkIconClick) ? function (e) {
           return onSdkIconClick(e, node);
-        } : undefined
+        } : undefined,
+        onHoverOver: function onHoverOver() {
+          return _this2.onHover(true);
+        },
+        onHoverLeave: function onHoverLeave() {
+          return _this2.onHover(false);
+        }
       })), _react["default"].createElement(_Drawer["default"], {
         restAnimationInfo: _objectSpread({}, restAnimationInfo)
       }, node.toggled ? this.renderChildren(decorators, animations) : null));
@@ -221,6 +253,8 @@ TreeNode.propTypes = {
   onRightSelect: _propTypes["default"].func,
   onSdkIconClick: _propTypes["default"].func,
   onDrag: _propTypes["default"].func,
+  onHoverOver: _propTypes["default"].func,
+  onHoverLeave: _propTypes["default"].func,
   onToggle: _propTypes["default"].func,
   style: _propTypes["default"].object.isRequired,
   customStyles: _propTypes["default"].object,

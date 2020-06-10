@@ -101,6 +101,8 @@ function (_PureComponent) {
           node = _this$props3.node,
           onSelect = _this$props3.onSelect,
           onRightSelect = _this$props3.onRightSelect,
+          onHoverOver = _this$props3.onHoverOver,
+          onHoverLeave = _this$props3.onHoverLeave,
           customStyles = _this$props3.customStyles;
       return _react["default"].createElement("div", {
         style: node.active ? _objectSpread({}, style.container) : _objectSpread({}, style.link)
@@ -109,7 +111,9 @@ function (_PureComponent) {
         style: style.header,
         customStyles: customStyles,
         onSelect: onSelect,
-        onRightSelect: onRightSelect
+        onRightSelect: onRightSelect,
+        onHoverOver: onHoverOver,
+        onHoverLeave: onHoverLeave
       }), sdk ? this.renderSdk() : null);
     }
   }]);
@@ -126,6 +130,8 @@ Container.propTypes = {
   onClick: _propTypes["default"].func.isRequired,
   onSelect: _propTypes["default"].func,
   onRightSelect: _propTypes["default"].func,
+  onHoverOver: _propTypes["default"].func,
+  onHoverLeave: _propTypes["default"].func,
   onSdkIconClick: _propTypes["default"].func,
   animations: _propTypes["default"].oneOfType([_propTypes["default"].object, _propTypes["default"].bool]).isRequired,
   node: _propTypes["default"].object.isRequired
@@ -133,6 +139,8 @@ Container.propTypes = {
 Container.defaultProps = {
   onSelect: null,
   onRightSelect: null,
+  onHoverOver: null,
+  onHoverLeave: null,
   customStyles: {}
 };
 var _default = Container;

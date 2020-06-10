@@ -32,7 +32,7 @@ class Container extends PureComponent {
 
     render() {
         const {
-            style, decorators, terminal, sdk, node, onSelect, onRightSelect, customStyles
+            style, decorators, terminal, sdk, node, onSelect, onRightSelect, onHoverOver, onHoverLeave, customStyles
         } = this.props;
         return (
             <div style={node.active ? {...style.container} : {...style.link}}>
@@ -43,6 +43,8 @@ class Container extends PureComponent {
                     customStyles={customStyles}
                     onSelect={onSelect}
                     onRightSelect={onRightSelect}
+                    onHoverOver={onHoverOver}
+                    onHoverLeave={onHoverLeave}
                 />
                 {sdk ? this.renderSdk() : null}
             </div>
@@ -59,6 +61,8 @@ Container.propTypes = {
     onClick: PropTypes.func.isRequired,
     onSelect: PropTypes.func,
     onRightSelect: PropTypes.func,
+    onHoverOver: PropTypes.func,
+    onHoverLeave: PropTypes.func,
     onSdkIconClick: PropTypes.func,
     animations: PropTypes.oneOfType([
         PropTypes.object,
@@ -70,6 +74,8 @@ Container.propTypes = {
 Container.defaultProps = {
     onSelect: null,
     onRightSelect: null,
+    onHoverOver: null,
+    onHoverLeave: null,
     customStyles: {}
 };
 

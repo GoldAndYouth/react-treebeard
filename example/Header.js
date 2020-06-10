@@ -4,13 +4,17 @@ import PropTypes from 'prop-types';
 import {Div} from '../src/components/common';
 
 // Example: Customising The Header Decorator To Include Icons
-const Header = ({onRightSelect, onSelect, style, customStyles, node}) => {
+const Header = ({onRightSelect, onSelect, onHoverOver, onHoverLeave, style, customStyles, node}) => {
     const iconType = node.children ? 'folder' : 'file-text';
     const iconClass = `fa fa-${iconType}`;
     const iconStyle = {marginRight: '5px'};
 
     return (
-        <div style={style.base} onClick={onSelect} onContextMenu={onRightSelect}>
+        <div style={style.base}
+            onClick={onSelect}
+            onContextMenu={onRightSelect}
+            onMouseOver={onHoverOver}
+            onMouseLeave={onHoverLeave}>
             <Div style={node.selected ? {...style.title, ...customStyles.header.title} : style.title}>
                 <i className={iconClass} style={iconStyle}/>
                 {node.name}
@@ -22,6 +26,8 @@ const Header = ({onRightSelect, onSelect, style, customStyles, node}) => {
 Header.propTypes = {
     onSelect: PropTypes.func,
     onRightSelect: PropTypes.func,
+    onHoverOver: PropTypes.func,
+    onHoverLeave: PropTypes.func,
     node: PropTypes.object,
     style: PropTypes.object,
     customStyles: PropTypes.object

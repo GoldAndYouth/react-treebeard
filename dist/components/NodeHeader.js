@@ -89,6 +89,8 @@ function (_Component) {
           style = _this$props.style,
           onSelect = _this$props.onSelect,
           onRightSelect = _this$props.onRightSelect,
+          onHoverLeave = _this$props.onHoverLeave,
+          onHoverOver = _this$props.onHoverOver,
           customStyles = _this$props.customStyles,
           onSdkIconClick = _this$props.onSdkIconClick;
       var active = node.active,
@@ -115,6 +117,8 @@ function (_Component) {
         customStyles: customStyles,
         onSelect: onSelect,
         onRightSelect: onRightSelect,
+        onHoverOver: onHoverOver,
+        onHoverLeave: onHoverLeave,
         terminal: terminal,
         sdk: sdkActive,
         style: styles
@@ -134,7 +138,9 @@ NodeHeader.propTypes = {
   onClick: _propTypes["default"].func,
   onSdkIconClick: _propTypes["default"].func,
   onSelect: _propTypes["default"].func,
-  onRightSelect: _propTypes["default"].func
+  onRightSelect: _propTypes["default"].func,
+  onHoverOver: _propTypes["default"].func,
+  onHoverLeave: _propTypes["default"].func
 };
 NodeHeader.defaultProps = {
   customStyles: {}

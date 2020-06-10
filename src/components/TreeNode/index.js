@@ -16,6 +16,18 @@ const Li = styled('li', {
 })(({style}) => style);
 
 class TreeNode extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            hovered: false
+        };
+        this.onHover = this.onHover.bind(this);
+    }
+
+    onHover(state) {
+        this.setState({ hovered: state });
+    }
+    
     onClick() {
         const {node, onToggle} = this.props;
         if (onToggle) {
@@ -53,6 +65,8 @@ class TreeNode extends PureComponent {
             onToggle,
             onSelect,
             onDrag,
+            onHoverOver,
+            onHoverLeave,
             onRightSelect,
             customStyles,
             onSdkIconClick,
@@ -78,6 +92,8 @@ class TreeNode extends PureComponent {
                         onSdkIconClick={onSdkIconClick}
                         onToggle={onToggle}
                         onDrag={onDrag}
+                        onHoverOver={onHoverOver}
+                        onHoverLeave={onHoverLeave}
                         animations={animations}
                         style={style}
                         customStyles={customStyles}
@@ -97,8 +113,12 @@ class TreeNode extends PureComponent {
         const decorators = this.decorators();
         const animations = this.animations();
         const {...restAnimationInfo} = animations.drawer;
+        let styles;
+        if (this.state.hovered) {
+            styles = {...style.hoveredLink};
+        } else { styles = {...style.base}; }
         return (
-            <Li style={style.base}>
+            <Li style={styles}>
                 <Draggable useDragImage onDrag={isFunction(onDrag) ? ((e) => onDrag(e, node)) : undefined}>
                     <NodeHeader
                         decorators={decorators}
@@ -110,6 +130,8 @@ class TreeNode extends PureComponent {
                         onSelect={isFunction(onSelect) ? ((e) => onSelect(e, node)) : undefined}
                         onRightSelect={isFunction(onRightSelect) ? ((e) => onRightSelect(e, node)) : undefined}
                         onSdkIconClick={isFunction(onSdkIconClick) ? ((e) => onSdkIconClick(e, node)) : undefined}
+                        onHoverOver={() => this.onHover(true)}
+                        onHoverLeave={() => this.onHover(false)}
                     />
                 </Draggable>
                 <Drawer restAnimationInfo={{...restAnimationInfo}}>
@@ -125,6 +147,8 @@ TreeNode.propTypes = {
     onRightSelect: PropTypes.func,
     onSdkIconClick: PropTypes.func,
     onDrag: PropTypes.func,
+    onHoverOver: PropTypes.func,
+    onHoverLeave: PropTypes.func,
     onToggle: PropTypes.func,
     style: PropTypes.object.isRequired,
     customStyles: PropTypes.object,

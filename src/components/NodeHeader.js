@@ -4,6 +4,7 @@ import shallowEqual from 'shallowequal';
 import deepEqual from 'deep-equal';
 
 class NodeHeader extends Component {
+
     shouldComponentUpdate(nextProps) {
         const props = this.props;
         const nextPropKeys = Object.keys(nextProps);
@@ -25,7 +26,17 @@ class NodeHeader extends Component {
 
     render() {
         const {
-            animations, decorators, node, onClick, style, onSelect, onRightSelect, customStyles, onSdkIconClick
+            animations,
+            decorators,
+            node,
+            onClick,
+            style,
+            onSelect,
+            onRightSelect,
+            onHoverLeave,
+            onHoverOver,
+            customStyles,
+            onSdkIconClick,
         } = this.props;
         const {active, children, sdk} = node;
         const terminal = !children;
@@ -46,6 +57,8 @@ class NodeHeader extends Component {
                 customStyles={customStyles}
                 onSelect={onSelect}
                 onRightSelect={onRightSelect}
+                onHoverOver={onHoverOver}
+                onHoverLeave={onHoverLeave}
                 terminal={terminal}
                 sdk={sdkActive}
                 style={styles}
@@ -67,6 +80,8 @@ NodeHeader.propTypes = {
     onSdkIconClick: PropTypes.func,
     onSelect: PropTypes.func,
     onRightSelect: PropTypes.func,
+    onHoverOver: PropTypes.func,
+    onHoverLeave: PropTypes.func,
 };
 
 NodeHeader.defaultProps = {

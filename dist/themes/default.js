@@ -28,6 +28,9 @@ var _default = {
       activeLink: {
         background: '#31363F'
       },
+      hoveredLink: {
+        background: '#31363F'
+      },
       toggle: {
         base: {
           position: 'relative',
