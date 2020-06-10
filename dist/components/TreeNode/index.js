@@ -204,7 +204,7 @@ function (_PureComponent) {
 
       if (this.state.hovered) {
         styles = _objectSpread({}, style, {}, style.link);
-        styles.link = _objectSpread({}, style.hoveredLink);
+        styles.link = _objectSpread({}, style.link, {}, style.hoveredLink);
       } else {
         styles = _objectSpread({}, style);
       }
