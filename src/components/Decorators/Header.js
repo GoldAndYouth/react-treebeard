@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 
 import {Div} from '../common';
 
-const Header = ({onRightSelect, onSelect, onHoverOver, onHoverLeave, node, style, customStyles}) => (
+const Header = ({onRightSelect, onSelect, node, style, customStyles}) => (
     <div style={style.base}
         onClick={onSelect}
-        onContextMenu={onRightSelect}
-        onMouseOver={onHoverOver}
-        onMouseLeave={onHoverLeave}>
+        onContextMenu={onRightSelect}>
         <Div style={node.selected ? {...style.title, ...customStyles.header.title} : style.title}>
             {node.name}
         </Div>

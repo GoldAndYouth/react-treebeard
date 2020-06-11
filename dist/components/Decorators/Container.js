@@ -105,15 +105,15 @@ function (_PureComponent) {
           onHoverLeave = _this$props3.onHoverLeave,
           customStyles = _this$props3.customStyles;
       return _react["default"].createElement("div", {
+        onMouseOver: onHoverOver,
+        onMouseLeave: onHoverLeave,
         style: node.active ? _objectSpread({}, style.container) : _objectSpread({}, style.link)
       }, !terminal ? this.renderToggle() : null, _react["default"].createElement(decorators.Header, {
         node: node,
         style: style.header,
         customStyles: customStyles,
         onSelect: onSelect,
-        onRightSelect: onRightSelect,
-        onHoverOver: onHoverOver,
-        onHoverLeave: onHoverLeave
+        onRightSelect: onRightSelect
       }), sdk ? this.renderSdk() : null);
     }
   }]);

@@ -35,7 +35,9 @@ class Container extends PureComponent {
             style, decorators, terminal, sdk, node, onSelect, onRightSelect, onHoverOver, onHoverLeave, customStyles
         } = this.props;
         return (
-            <div style={node.active ? {...style.container} : {...style.link}}>
+            <div onMouseOver={onHoverOver}
+                onMouseLeave={onHoverLeave}
+                style={node.active ? {...style.container} : {...style.link}}>
                 {!terminal ? this.renderToggle() : null}
                 <decorators.Header
                     node={node}
@@ -43,8 +45,6 @@ class Container extends PureComponent {
                     customStyles={customStyles}
                     onSelect={onSelect}
                     onRightSelect={onRightSelect}
-                    onHoverOver={onHoverOver}
-                    onHoverLeave={onHoverLeave}
                 />
                 {sdk ? this.renderSdk() : null}
             </div>

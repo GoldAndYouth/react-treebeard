@@ -22,17 +22,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var Header = function Header(_ref) {
   var onRightSelect = _ref.onRightSelect,
       onSelect = _ref.onSelect,
-      onHoverOver = _ref.onHoverOver,
-      onHoverLeave = _ref.onHoverLeave,
       node = _ref.node,
       style = _ref.style,
       customStyles = _ref.customStyles;
   return _react["default"].createElement("div", {
     style: style.base,
     onClick: onSelect,
-    onContextMenu: onRightSelect,
-    onMouseOver: onHoverOver,
-    onMouseLeave: onHoverLeave
+    onContextMenu: onRightSelect
   }, _react["default"].createElement(_common.Div, {
     style: node.selected ? _objectSpread({}, style.title, {}, customStyles.header.title) : style.title
   }, node.name));
