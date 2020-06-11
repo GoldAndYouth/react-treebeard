@@ -38,6 +38,7 @@ const TreeBeard = ({
                 customStyles={customStyles}
                 key={node.id || randomString()}
                 style={{...defaultTheme.tree.node, ...style.tree.node}}
+                idx={0}
             />
         ))}
     </Ul>

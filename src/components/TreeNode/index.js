@@ -56,7 +56,7 @@ class TreeNode extends PureComponent {
         return Object.assign({}, decorators, nodeDecorators);
     }
 
-    renderChildren(decorators) {
+    renderChildren(idx, decorators) {
         const {
             animations,
             decorators: propDecorators,
@@ -77,12 +77,10 @@ class TreeNode extends PureComponent {
                 <Loading decorators={decorators} style={style}/>
             );
         }
-
         let children = node.children;
         if (!isArray(children)) {
             children = children ? [children] : [];
         }
-
         return (
             <Ul style={style.subtree}>
                 {children.map(child => (
@@ -100,6 +98,7 @@ class TreeNode extends PureComponent {
                         decorators={propDecorators}
                         key={child.id || randomString()}
                         node={child}
+                        idx={idx}
                     />
                 ))}
             </Ul>
@@ -108,16 +107,22 @@ class TreeNode extends PureComponent {
 
     render() {
         const {
-            node, style, onSelect, onRightSelect, onDrag, customStyles, onSdkIconClick
+            node, style, onSelect, onRightSelect, onDrag, customStyles, onSdkIconClick, idx,
         } = this.props;
         const decorators = this.decorators();
         const animations = this.animations();
         const {...restAnimationInfo} = animations.drawer;
+        /* count into nodes so we can use this to indent with margin */
+        const idxCounter = idx+1;
         let styles;
         if (this.state.hovered) {
             styles = {...style, ...style.link};
-            styles.link = {...style.link, ...style.hoveredLink};
-        } else { styles = {...style}; }
+            styles.link = {...style.link, ...style.hoveredLink};    
+        } else { 
+            styles = {...style};
+        }
+        styles.link.marginLeft = `-${(idxCounter*38)}px`;
+        styles.link.paddingLeft = `${(idxCounter*38)}px`;
         return (
             <Li style={{...style.base}}>
                 <Draggable useDragImage onDrag={isFunction(onDrag) ? ((e) => onDrag(e, node)) : undefined}>
@@ -133,10 +138,11 @@ class TreeNode extends PureComponent {
                         onSdkIconClick={isFunction(onSdkIconClick) ? ((e) => onSdkIconClick(e, node)) : undefined}
                         onHoverOver={() => this.onHover(true)}
                         onHoverLeave={() => this.onHover(false)}
+                        idx={idxCounter}
                     />
                 </Draggable>
                 <Drawer restAnimationInfo={{...restAnimationInfo}}>
-                    {node.toggled ? this.renderChildren(decorators, animations) : null}
+                    {node.toggled ? this.renderChildren(idxCounter, decorators, animations) : null}
                 </Drawer>
             </Li>
         );
@@ -158,11 +164,13 @@ TreeNode.propTypes = {
     animations: PropTypes.oneOfType([
         PropTypes.object,
         PropTypes.bool
-    ]).isRequired
+    ]).isRequired,
+    idx: PropTypes.number,
 };
 
 TreeNode.defaultProps = {
-    customStyles: {}
+    customStyles: {},
+    idx: 0,
 };
 
 export default TreeNode;

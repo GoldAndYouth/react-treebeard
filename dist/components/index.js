@@ -60,7 +60,8 @@ var TreeBeard = function TreeBeard(_ref) {
       onSdkIconClick: onSdkIconClick,
       customStyles: customStyles,
       key: node.id || (0, _util.randomString)(),
-      style: _objectSpread({}, _default2["default"].tree.node, {}, style.tree.node)
+      style: _objectSpread({}, _default2["default"].tree.node, {}, style.tree.node),
+      idx: 0
     });
   }));
 };

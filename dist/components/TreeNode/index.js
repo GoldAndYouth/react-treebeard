@@ -134,7 +134,7 @@ function (_PureComponent) {
     }
   }, {
     key: "renderChildren",
-    value: function renderChildren(decorators) {
+    value: function renderChildren(idx, decorators) {
       var _this$props4 = this.props,
           animations = _this$props4.animations,
           propDecorators = _this$props4.decorators,
@@ -178,7 +178,8 @@ function (_PureComponent) {
           customStyles: customStyles,
           decorators: propDecorators,
           key: child.id || (0, _util.randomString)(),
-          node: child
+          node: child,
+          idx: idx
         });
       }));
     }
@@ -194,12 +195,16 @@ function (_PureComponent) {
           onRightSelect = _this$props5.onRightSelect,
           onDrag = _this$props5.onDrag,
           customStyles = _this$props5.customStyles,
-          onSdkIconClick = _this$props5.onSdkIconClick;
+          onSdkIconClick = _this$props5.onSdkIconClick,
+          idx = _this$props5.idx;
       var decorators = this.decorators();
       var animations = this.animations();
 
       var restAnimationInfo = _extends({}, animations.drawer);
+      /* count into nodes so we can use this to indent with margin */
 
+
+      var idxCounter = idx + 1;
       var styles;
 
       if (this.state.hovered) {
@@ -209,6 +214,8 @@ function (_PureComponent) {
         styles = _objectSpread({}, style);
       }
 
+      styles.link.marginLeft = "-".concat(idxCounter * 38, "px");
+      styles.link.paddingLeft = "".concat(idxCounter * 38, "px");
       return _react["default"].createElement(Li, {
         style: _objectSpread({}, style.base)
       }, _react["default"].createElement(_dragginit.Draggable, {
@@ -239,10 +246,11 @@ function (_PureComponent) {
         },
         onHoverLeave: function onHoverLeave() {
           return _this2.onHover(false);
-        }
+        },
+        idx: idxCounter
       })), _react["default"].createElement(_Drawer["default"], {
         restAnimationInfo: _objectSpread({}, restAnimationInfo)
-      }, node.toggled ? this.renderChildren(decorators, animations) : null));
+      }, node.toggled ? this.renderChildren(idxCounter, decorators, animations) : null));
     }
   }]);
 
@@ -261,10 +269,12 @@ TreeNode.propTypes = {
   customStyles: _propTypes["default"].object,
   node: _propTypes["default"].object.isRequired,
   decorators: _propTypes["default"].object.isRequired,
-  animations: _propTypes["default"].oneOfType([_propTypes["default"].object, _propTypes["default"].bool]).isRequired
+  animations: _propTypes["default"].oneOfType([_propTypes["default"].object, _propTypes["default"].bool]).isRequired,
+  idx: _propTypes["default"].number
 };
 TreeNode.defaultProps = {
-  customStyles: {}
+  customStyles: {},
+  idx: 0
 };
 var _default = TreeNode;
 exports["default"] = _default;
