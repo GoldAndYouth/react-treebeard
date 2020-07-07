@@ -143,6 +143,7 @@ function (_PureComponent) {
           onToggle = _this$props4.onToggle,
           onSelect = _this$props4.onSelect,
           onDrag = _this$props4.onDrag,
+          onDrop = _this$props4.onDrop,
           onHoverOver = _this$props4.onHoverOver,
           onHoverLeave = _this$props4.onHoverLeave,
           onRightSelect = _this$props4.onRightSelect,
@@ -171,6 +172,7 @@ function (_PureComponent) {
           onSdkIconClick: onSdkIconClick,
           onToggle: onToggle,
           onDrag: onDrag,
+          onDrop: onDrop,
           onHoverOver: onHoverOver,
           onHoverLeave: onHoverLeave,
           animations: animations,
@@ -194,6 +196,7 @@ function (_PureComponent) {
           onSelect = _this$props5.onSelect,
           onRightSelect = _this$props5.onRightSelect,
           onDrag = _this$props5.onDrag,
+          onDrop = _this$props5.onDrop,
           customStyles = _this$props5.customStyles,
           onSdkIconClick = _this$props5.onSdkIconClick,
           idx = _this$props5.idx;
@@ -218,10 +221,14 @@ function (_PureComponent) {
       styles.link.paddingLeft = "".concat(idxCounter * 38, "px");
       return _react["default"].createElement(Li, {
         style: _objectSpread({}, style.base)
-      }, _react["default"].createElement(_dragginit.Draggable, {
+      }, _react["default"].createElement(_dragginit.Droppable, {
+        canDrag: true,
         useDragImage: true,
         onDrag: (0, _lodash.isFunction)(onDrag) ? function (e) {
           return onDrag(e, node);
+        } : undefined,
+        onDrop: (0, _lodash.isFunction)(onDrop) ? function (e) {
+          return onDrop(e, node);
         } : undefined
       }, _react["default"].createElement(_NodeHeader["default"], {
         decorators: decorators,
@@ -262,6 +269,7 @@ TreeNode.propTypes = {
   onRightSelect: _propTypes["default"].func,
   onSdkIconClick: _propTypes["default"].func,
   onDrag: _propTypes["default"].func,
+  onDrop: _propTypes["default"].func,
   onHoverOver: _propTypes["default"].func,
   onHoverLeave: _propTypes["default"].func,
   onToggle: _propTypes["default"].func,

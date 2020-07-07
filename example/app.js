@@ -16,6 +16,8 @@ class DemoTree extends PureComponent {
         this.state = {data};
         this.onToggle = this.onToggle.bind(this);
         this.onSelect = this.onSelect.bind(this);
+        this.onDrag = this.onDrag.bind(this);
+        this.onDrop = this.onDrop.bind(this);
         this.onRightSelect = this.onRightSelect.bind(this);
         this.onSdkIconClick = this.onSdkIconClick.bind(this);
     }
@@ -68,6 +70,11 @@ class DemoTree extends PureComponent {
         console.log(node);
     }
 
+    onDrop(e, node) {
+        console.log('Drop Event.');
+        console.log(node);
+    }
+
     onFilterMouseUp({target: {value}}) {
         const filter = value.trim();
         if (!filter) {
@@ -102,6 +109,7 @@ class DemoTree extends PureComponent {
                         onSelect={this.onSelect}
                         onRightSelect={this.onRightSelect}
                         onDrag={this.onDrag}
+                        onDrop={this.onDrop}
                         onSdkIconClick={this.onSdkIconClick}
                         decorators={{...decorators, Header}}
                         customStyles={{

@@ -14,6 +14,7 @@ const TreeBeard = ({
     decorators,
     data, onToggle,
     onDrag,
+    onDrop,
     onHoverOver,
     onHoverLeave,
     style,
@@ -29,6 +30,7 @@ const TreeBeard = ({
                 node={node}
                 onToggle={onToggle}
                 onDrag={onDrag}
+                onDrop={onDrop}
                 onHoverOver={onHoverOver}
                 onHoverLeave={onHoverLeave}
                 animations={animations}
@@ -57,6 +59,7 @@ TreeBeard.propTypes = {
     ]),
     onToggle: PropTypes.func,
     onDrag: PropTypes.func,
+    onDrop: PropTypes.func,
     onHoverOver: PropTypes.func,
     onHoverLeave: PropTypes.func,
     onSelect: PropTypes.func,

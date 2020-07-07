@@ -7,7 +7,7 @@ import defaultAnimations from '../../themes/animations';
 import {randomString} from '../../util';
 import {Ul} from '../common';
 import NodeHeader from '../NodeHeader';
-import {Draggable} from 'dragginit';
+import {Droppable} from 'dragginit';
 import Drawer from './Drawer';
 import Loading from './Loading';
 
@@ -65,6 +65,7 @@ class TreeNode extends PureComponent {
             onToggle,
             onSelect,
             onDrag,
+            onDrop,
             onHoverOver,
             onHoverLeave,
             onRightSelect,
@@ -90,6 +91,7 @@ class TreeNode extends PureComponent {
                         onSdkIconClick={onSdkIconClick}
                         onToggle={onToggle}
                         onDrag={onDrag}
+                        onDrop={onDrop}
                         onHoverOver={onHoverOver}
                         onHoverLeave={onHoverLeave}
                         animations={animations}
@@ -107,7 +109,7 @@ class TreeNode extends PureComponent {
 
     render() {
         const {
-            node, style, onSelect, onRightSelect, onDrag, customStyles, onSdkIconClick, idx,
+            node, style, onSelect, onRightSelect, onDrag, onDrop, customStyles, onSdkIconClick, idx,
         } = this.props;
         const decorators = this.decorators();
         const animations = this.animations();
@@ -125,7 +127,12 @@ class TreeNode extends PureComponent {
         styles.link.paddingLeft = `${(idxCounter*38)}px`;
         return (
             <Li style={{...style.base}}>
-                <Draggable useDragImage onDrag={isFunction(onDrag) ? ((e) => onDrag(e, node)) : undefined}>
+                <Droppable
+                    canDrag
+                    useDragImage
+                    onDrag={isFunction(onDrag) ? ((e) => onDrag(e, node)) : undefined}
+                    onDrop={isFunction(onDrop) ? ((e) => onDrop(e, node)) : undefined}
+                >
                     <NodeHeader
                         decorators={decorators}
                         animations={animations}
@@ -140,7 +147,7 @@ class TreeNode extends PureComponent {
                         onHoverLeave={() => this.onHover(false)}
                         idx={idxCounter}
                     />
-                </Draggable>
+                </Droppable>
                 <Drawer restAnimationInfo={{...restAnimationInfo}}>
                     {node.toggled ? this.renderChildren(idxCounter, decorators, animations) : null}
                 </Drawer>
@@ -154,6 +161,7 @@ TreeNode.propTypes = {
     onRightSelect: PropTypes.func,
     onSdkIconClick: PropTypes.func,
     onDrag: PropTypes.func,
+    onDrop: PropTypes.func,
     onHoverOver: PropTypes.func,
     onHoverLeave: PropTypes.func,
     onToggle: PropTypes.func,
